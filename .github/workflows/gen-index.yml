@@ -44,3 +44,9 @@ jobs:
           artifacts: ./out/*.zip,./out/*.md5sum,./out/source/index.json
           bodyFile: ./out/checksums.md
           token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Upload to Alist
+        env:
+          ALIST_KEY: ${{ secrets.ALIST_KEY }}
+          ALIST_HOST: ${{ secrets.ALIST_HOST }}
+        run: pwsh -ep bypass ./tools/upload.ps1
